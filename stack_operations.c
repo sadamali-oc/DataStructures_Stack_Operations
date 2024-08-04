@@ -14,8 +14,9 @@ int main(){
         printf("Choices\n");
         printf("1. Push\n");
         printf("2. Pop\n");
-        printf("3. Print all the elements of stack\n");
-        printf("4. Print the top element of the stack\n");
+        printf("3. Print the top element of the stack\n");
+        printf("4. Print all the elements of stack\n");
+
         printf("5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -23,23 +24,35 @@ int main(){
         switch (choice) {
             case 1:
                 printf("Enter the element to be push : ");
-                scanf("%d",&data);
+                scanf("%d", &data);
                 push(data);
                 break;
 
             case 2:
-               data = pop();
-               printf("Deleted elemet is %d\n",data);
+                data = pop();
+                printf("Deleted elemet is %d\n", data);
                 break;
+
             case 3:
-//                print();
+                data = peek();
+                printf("The top of the element is : %d\n", data);
+
                 break;
 
+            case 4:
+                print();
+                break;
 
+            case 5:
+                exit(1);
+            default:
+                printf("Wrong choice");
         }
-        return  0;
 
-    }}
+
+    }
+    return  0;
+}
 
 
     int isFull(){
@@ -61,7 +74,7 @@ int isEmpty(){
     int push(int data){
     if(isFull()){
         printf("stack overflow error\n");
-        return ;
+        return 0 ;
     }
     top=top +1;
     stack_arry[top]=data;
@@ -82,5 +95,24 @@ int pop (){
 }
 
 int peek(){
-    
+    if(isEmpty()){
+        printf("stack underflow error");
+        exit(1);
+    }
+    return stack_arry[top];
 }
+
+
+int   print(){
+    int i;
+    if(isEmpty()){
+        printf("stack underflow error");
+        return 0 ;
+    }
+    for(i=top;i>=0;i--){
+        printf("\n%d\n", stack_arry[i]);
+    }
+
+}
+
+
