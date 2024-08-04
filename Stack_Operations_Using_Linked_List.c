@@ -31,6 +31,10 @@ void push(int data){
 void print() {
     struct Node *temp;
     temp = top;
+    if(isEmpty()){
+        printf("stack overflow");
+        exit(1);
+    }
     printf("The stack elements are : ");
     while (temp) {
         printf("%d ", temp->data);
@@ -41,6 +45,45 @@ void print() {
 
 }
 
+int pop(){
+    struct  Node* temp;
+    temp=top;
+
+    if(isEmpty()){
+        printf("stack overflow");
+        exit(1);
+    }
+
+    int val=temp-> data;
+
+
+    top=top->Link;
+    free(temp);
+    temp=NULL;
+    return  val;
+
+}
+
+int isEmpty(){
+    if(top ==NULL)
+        return 1;
+    else
+        return 0;
+}
+
+
+
+int peek(){
+
+        if(isEmpty()){
+            printf("stack underflow");
+            exit(1);
+
+    }
+    return  top->data;
+}
+
+
 
 int main(){
     int choice, data;
@@ -48,10 +91,10 @@ int main(){
     while (1) {
         // Display menu
         printf("Choices\n");
-        printf("1. Push\n");
-//        printf("2. Pop\n");
-//        printf("3. Print the top element of the stack\n");
-        printf("4. Print all the elements of stack\n");
+     printf("1. Push\n");
+      printf("2. Pop\n");
+       printf("3. Print the top element of the stack\n");
+      printf("4. Print all the elements of stack\n");
 
         printf("5. Exit\n");
         printf("Enter your choice: ");
@@ -63,17 +106,17 @@ int main(){
                 scanf("%d", &data);
                 push(data);
                 break;
-//
-//            case 2:
-//                data = pop();
-//                printf("Deleted elemet is %d\n", data);
-//                break;
 
-//            case 3:
-//                data = peek();
-//                printf("The top of the element is : %d\n", data);
-//
-//                break;
+            case 2:
+                data = pop();
+                printf("Deleted elemet is %d\n", data);
+                break;
+
+            case 3:
+                data = peek();
+                printf("The top of the element is : %d\n", data);
+
+                break;
 
             case 4:
                 print();
