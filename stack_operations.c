@@ -4,6 +4,7 @@
 #define  MAX 4
 int stack_arry[MAX];
 
+int top = -1;
 int main(){
 
     int choice, data;
@@ -21,15 +22,17 @@ int main(){
 
         switch (choice) {
             case 1:
-                
-                push();
+                printf("Enter the element to be push : ");
+                scanf("%d",&data);
+                push(data);
                 break;
 
             case 2:
-                pop();
+               data = pop();
+               printf("Deleted elemet is %d\n",data);
                 break;
             case 3:
-                print();
+//                print();
                 break;
 
 
@@ -37,3 +40,47 @@ int main(){
         return  0;
 
     }}
+
+
+    int isFull(){
+    if(top ==MAX -1){
+        return  1;
+    }else
+        return  0;
+}
+
+
+int isEmpty(){
+    if(top == -1){
+        return 1;
+    } else
+        return  0;
+}
+
+
+    int push(int data){
+    if(isFull()){
+        printf("stack overflow error\n");
+        return ;
+    }
+    top=top +1;
+    stack_arry[top]=data;
+
+
+
+}
+
+int pop (){
+    int value;
+    if(isEmpty()){
+        printf("stack underflow error");
+        exit(1);
+    }
+    value =stack_arry[top];
+    top=top -1;
+    return value;
+}
+
+int peek(){
+    
+}
